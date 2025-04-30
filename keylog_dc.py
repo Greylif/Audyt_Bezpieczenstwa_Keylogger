@@ -8,7 +8,7 @@ from pynput.keyboard import Listener as KeyboardListener, Key
 from supabase import create_client, Client
 from dotenv import load_dotenv
 
-#test
+#tes
 load_dotenv()
 url = "https://gurjbecyjphjhrhihnwv.supabase.co"
 key = os.getenv("SP_API_KEY")
