@@ -13,7 +13,7 @@ supabase: Client = create_client(url, key)
 response = supabase.table("Keys").select("*").execute()
 
 #Discordo
-Token = 'MTM1ODczMDgxMjc5MDU0MjUzOA.Gr_mia.dRTSiWvlsJ5CZzYgh7orLtr22f_HJkRzlMeRAo'
+Token = ''
 intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
