@@ -1,1 +1,0 @@
-python -m PyInstaller --onefile --noconsole keylog.py -n napewno_nie_keylogger
